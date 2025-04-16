@@ -1,8 +1,9 @@
 use nu_engine::command_prelude::*;
 use serde::Deserialize;
 use update_informer::{
+    Check, Package, Registry, Result as UpdateResult,
     http_client::{GenericHttpClient, HttpClient},
-    registry, Check, Package, Registry, Result as UpdateResult,
+    registry,
 };
 
 #[derive(Clone)]
@@ -90,9 +91,7 @@ impl HttpClient for NativeTlsHttpClient {
         timeout: std::time::Duration,
         headers: update_informer::http_client::HeaderMap,
     ) -> update_informer::Result<T> {
-        let agent = ureq::AgentBuilder::new()
-            .tls_connector(std::sync::Arc::new(native_tls::TlsConnector::new()?))
-            .build();
+        let agent = ureq::AgentBuilder::new().build();
 
         let mut req = agent.get(url).timeout(timeout);
 

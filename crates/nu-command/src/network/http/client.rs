@@ -1,12 +1,11 @@
 use crate::formats::value_to_json_value;
 use base64::{
-    alphabet,
-    engine::{general_purpose::PAD, GeneralPurpose},
-    Engine,
+    Engine, alphabet,
+    engine::{GeneralPurpose, general_purpose::PAD},
 };
 use multipart_rs::MultipartWriter;
 use nu_engine::command_prelude::*;
-use nu_protocol::{shell_error::io::IoError, ByteStream, LabeledError, Signals};
+use nu_protocol::{ByteStream, LabeledError, Signals, shell_error::io::IoError};
 use serde_json::Value as JsonValue;
 use std::{
     collections::HashMap,
@@ -52,25 +51,12 @@ pub enum RedirectMode {
 }
 
 pub fn http_client(
-    allow_insecure: bool,
+    _allow_insecure: bool,
     redirect_mode: RedirectMode,
     engine_state: &EngineState,
     stack: &mut Stack,
 ) -> Result<ureq::Agent, ShellError> {
-    let tls = native_tls::TlsConnector::builder()
-        .danger_accept_invalid_certs(allow_insecure)
-        .build()
-        .map_err(|e| ShellError::GenericError {
-            error: format!("Failed to build network tls: {}", e),
-            msg: String::new(),
-            span: None,
-            help: None,
-            inner: vec![],
-        })?;
-
-    let mut agent_builder = ureq::builder()
-        .user_agent("nushell")
-        .tls_connector(std::sync::Arc::new(tls));
+    let mut agent_builder = ureq::builder().user_agent("nushell");
 
     if let RedirectMode::Manual | RedirectMode::Error = redirect_mode {
         agent_builder = agent_builder.redirects(0);
@@ -414,7 +400,7 @@ fn send_multipart_request(
                     err_message: format!("Accepted types: [record]. Check: {HTTP_DOCS}"),
                     span: body.span(),
                 },
-            ))
+            ));
         }
     };
     send_cancellable_request(request_url, Box::new(request_fn), span, signals)
@@ -671,7 +657,12 @@ fn handle_response_error(span: Span, requested_url: &str, response_err: Error) -
                 span,
             };
             match t.kind() {
-                ErrorKind::ConnectionFailed => ShellError::NetworkFailure { msg: format!("Cannot make request to {requested_url}, there was an error establishing a connection.",), span },
+                ErrorKind::ConnectionFailed => ShellError::NetworkFailure {
+                    msg: format!(
+                        "Cannot make request to {requested_url}, there was an error establishing a connection.",
+                    ),
+                    span,
+                },
                 ErrorKind::Io => 'io: {
                     let Some(source) = t.source() else {
                         break 'io generic_network_failure();
@@ -683,7 +674,7 @@ fn handle_response_error(span: Span, requested_url: &str, response_err: Error) -
 
                     ShellError::Io(IoError::new(io_error.kind(), span, None))
                 }
-                _ => generic_network_failure()
+                _ => generic_network_failure(),
             }
         }
     }

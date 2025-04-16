@@ -112,7 +112,6 @@ mime = "0.3.17"
 mime_guess = "2.0"
 mockito = { version = "1.7", default-features = false }
 multipart-rs = "0.1.13"
-native-tls = "0.2"
 nix = { version = "0.29", default-features = false }
 notify-debouncer-full = { version = "0.3", default-features = false }
 nu-ansi-term = "0.50.1"
@@ -164,7 +163,10 @@ tempfile = "3.15"
 titlecase = "3.5"
 toml = "0.8"
 trash = "5.2"
-update-informer = { version = "1.2.0", default-features = false, features = ["github", "native-tls", "ureq"] }
+update-informer = { version = "1.2.0", default-features = false, features = [
+  "github",
+  "ureq",
+] }
 umask = "2.1"
 unicode-segmentation = "1.12"
 unicode-width = "0.2"
@@ -269,11 +271,7 @@ plugin = [
   "nu-protocol/plugin",
 ]
 
-default = [
-  "plugin",
-  "trash-support",
-  "sqlite",
-]
+default = ["plugin", "trash-support", "sqlite"]
 stable = ["default"]
 # NOTE: individual features are also passed to `nu-cmd-lang` that uses them to generate the feature matrix in the `version` command
 

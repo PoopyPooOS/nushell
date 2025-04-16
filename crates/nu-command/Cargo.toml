@@ -41,9 +41,9 @@ bytesize = { workspace = true }
 calamine = { workspace = true, features = ["dates"] }
 chardetng = { workspace = true }
 chrono = { workspace = true, features = [
-	"std",
-	"unstable-locales",
-	"clock",
+  "std",
+  "unstable-locales",
+  "clock",
 ], default-features = false }
 chrono-humanize = { workspace = true }
 chrono-tz = { workspace = true }
@@ -51,7 +51,7 @@ crossterm = { workspace = true, optional = true }
 csv = { workspace = true }
 devicons = { workspace = true }
 dialoguer = { workspace = true, default-features = false, features = [
-	"fuzzy-select",
+  "fuzzy-select",
 ] }
 digest = { workspace = true, default-features = false }
 dtparse = { workspace = true }
@@ -65,13 +65,12 @@ indicatif = { workspace = true }
 itertools = { workspace = true }
 log = { workspace = true }
 lscolors = { workspace = true, default-features = false, features = [
-	"nu-ansi-term",
+  "nu-ansi-term",
 ] }
 md5 = { workspace = true }
 mime = { workspace = true }
 mime_guess = { workspace = true }
 multipart-rs = { workspace = true, optional = true }
-native-tls = { workspace = true, optional = true }
 notify-debouncer-full = { workspace = true, default-features = false, optional = true }
 num-format = { workspace = true }
 num-traits = { workspace = true }
@@ -87,9 +86,9 @@ getrandom = { workspace = true, optional = true }
 rayon = { workspace = true }
 roxmltree = { workspace = true }
 rusqlite = { workspace = true, features = [
-	"bundled",
-	"backup",
-	"chrono",
+  "bundled",
+  "backup",
+  "chrono",
 ], optional = true }
 rmp = { workspace = true }
 scopeguard = { workspace = true }
@@ -104,11 +103,11 @@ titlecase = { workspace = true }
 toml = { workspace = true, features = ["preserve_order"] }
 unicode-segmentation = { workspace = true }
 update-informer = { workspace = true, optional = true }
-ureq = { workspace = true, default-features = false, features = [
-	"charset",
-	"gzip",
-	"json",
-	"native-tls",
+ureq = { workspace = true, features = [
+  "charset",
+  "json",
+  "gzip",
+  "tls",
 ], optional = true }
 url = { workspace = true }
 uu_cp = { workspace = true, optional = true }
@@ -119,11 +118,11 @@ uu_touch = { workspace = true, optional = true }
 uu_uname = { workspace = true, optional = true }
 uu_whoami = { workspace = true, optional = true }
 uuid = { workspace = true, features = [
-	"v1",
-	"v3",
-	"v4",
-	"v5",
-	"v7",
+  "v1",
+  "v3",
+  "v4",
+  "v5",
+  "v7",
 ], optional = true }
 v_htmlescape = { workspace = true }
 wax = { workspace = true }
@@ -141,9 +140,9 @@ uucore = { workspace = true, features = ["mode"] }
 [target.'cfg(unix)'.dependencies]
 umask = { workspace = true }
 nix = { workspace = true, default-features = false, features = [
-	"user",
-	"resource",
-	"pthread",
+  "user",
+  "resource",
+  "pthread",
 ] }
 
 [target.'cfg(any(target_os = "linux", target_os = "android"))'.dependencies]
@@ -155,37 +154,36 @@ workspace = true
 
 [target.'cfg(windows)'.dependencies.windows]
 features = [
-	"Win32_Foundation",
-	"Win32_Storage_FileSystem",
-	"Win32_System_Environment",
-	"Win32_System_SystemServices",
-	"Win32_Security",
-	"Win32_System_Threading",
+  "Win32_Foundation",
+  "Win32_Storage_FileSystem",
+  "Win32_System_Environment",
+  "Win32_System_SystemServices",
+  "Win32_Security",
+  "Win32_System_Threading",
 ]
 workspace = true
 
 [features]
-default = ["os"]
+default = ["os", "network"]
 os = [
-	# include other features
-	"js",
-	"network",
-	"nu-protocol/os",
-	"nu-utils/os",
+  # include other features
+  "js",
+  "nu-protocol/os",
+  "nu-utils/os",
 
-	# os-dependant dependencies
-	"crossterm",
-	"notify-debouncer-full",
-	"open",
-	"os_pipe",
-	"uu_cp",
-	"uu_mkdir",
-	"uu_mktemp",
-	"uu_mv",
-	"uu_touch",
-	"uu_uname",
-	"uu_whoami",
-	"which",
+  # os-dependant dependencies
+  "crossterm",
+  "notify-debouncer-full",
+  "open",
+  "os_pipe",
+  "uu_cp",
+  "uu_mkdir",
+  "uu_mktemp",
+  "uu_mv",
+  "uu_touch",
+  "uu_uname",
+  "uu_whoami",
+  "which",
 ]
 
 # The dependencies listed below need 'getrandom'.
@@ -196,13 +194,7 @@ js = ["getrandom", "getrandom/js", "rand", "uuid"]
 # These dependencies require networking capabilities, especially the http
 # interface requires openssl which is not easy to embed into wasm,
 # using rustls could solve this issue.
-network = [
-	"multipart-rs",
-	"native-tls",
-	"update-informer/native-tls",
-	"ureq",
-	"uuid",
-]
+network = ["multipart-rs", "update-informer", "ureq", "uuid"]
 
 plugin = ["nu-parser/plugin", "os"]
 sqlite = ["rusqlite"]
