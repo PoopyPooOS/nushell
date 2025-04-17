@@ -1,0 +1,15 @@
+[package]
+name = "nu-embed"
+version = "0.103.1"
+edition = "2021"
+
+[dependencies]
+nu-protocol = { path = "../nu-protocol", version = "0.103.1" }
+nu-cli = { path = "../nu-cli", version = "0.103.1" }
+nu-cmd-lang = { path = "../nu-cmd-lang", version = "0.103.1" }
+nu-command = { path = "../nu-command", version = "0.103.1", features = [
+  "ureq",
+] }
+nu-path = { path = "../nu-path", version = "0.103.1" }
+
+zip = { version = "=2.5.0" }
