@@ -1,9 +1,8 @@
 use nu_engine::command_prelude::*;
 use nu_protocol::{shell_error::io::IoError, HistoryFileFormat};
-use reedline::{
-    FileBackedHistory, History as ReedlineHistory, HistoryItem, SearchDirection, SearchQuery,
-    SqliteBackedHistory,
-};
+use reedline::{FileBackedHistory, History as ReedlineHistory, SearchDirection, SearchQuery};
+#[cfg(any(feature = "sqlite", feature = "sqlite-dynlib"))]
+use reedline::{HistoryItem, SqliteBackedHistory};
 
 use super::fields;
 
@@ -55,9 +54,11 @@ impl Command for History {
             return Ok(PipelineData::empty());
         }
 
+        #[cfg(any(feature = "sqlite", feature = "sqlite-dynlib"))]
         let long = call.has_flag(engine_state, stack, "long")?;
         let signals = engine_state.signals().clone();
         let history_reader: Option<Box<dyn ReedlineHistory>> = match history.file_format {
+            #[cfg(any(feature = "sqlite", feature = "sqlite-dynlib"))]
             HistoryFileFormat::Sqlite => {
                 SqliteBackedHistory::with_file(history_path.clone(), None, None)
                     .map(|inner| {
@@ -65,6 +66,16 @@ impl Command for History {
                         boxed
                     })
                     .ok()
+            }
+            #[cfg(not(any(feature = "sqlite", feature = "sqlite-dynlib")))]
+            HistoryFileFormat::Sqlite => {
+                return Err(ShellError::GenericError {
+                    error: "Feature not enabled".into(),
+                    msg: "Sqlite history support is not enabled".into(),
+                    span: None,
+                    help: None,
+                    inner: Vec::new(),
+                })
             }
             HistoryFileFormat::Plaintext => {
                 FileBackedHistory::with_file(history.max_size as usize, history_path.clone())
@@ -99,6 +110,7 @@ impl Command for History {
                     history_path,
                 ))?
                 .into_pipeline_data(head, signals)),
+            #[cfg(any(feature = "sqlite", feature = "sqlite-dynlib"))]
             HistoryFileFormat::Sqlite => Ok(history_reader
                 .and_then(|h| {
                     h.search(SearchQuery::everything(SearchDirection::Forward, None))
@@ -116,6 +128,16 @@ impl Command for History {
                     history_path,
                 ))?
                 .into_pipeline_data(head, signals)),
+            #[cfg(not(any(feature = "sqlite", feature = "sqlite-dynlib")))]
+            HistoryFileFormat::Sqlite => {
+                return Err(ShellError::GenericError {
+                    error: "Feature not enabled".into(),
+                    msg: "Sqlite history support is not enabled".into(),
+                    span: None,
+                    help: None,
+                    inner: Vec::new(),
+                })
+            }
         }
     }
 
@@ -140,6 +162,7 @@ impl Command for History {
     }
 }
 
+#[cfg(any(feature = "sqlite", feature = "sqlite-dynlib"))]
 fn create_history_record(idx: usize, entry: HistoryItem, long: bool, head: Span) -> Value {
     //1. Format all the values
     //2. Create a record of either short or long columns and values

@@ -25,18 +25,22 @@ nu-glob = { path = "../nu-glob", version = "0.103.1" }
 nu-path = { path = "../nu-path", version = "0.103.1" }
 nu-parser = { path = "../nu-parser", version = "0.103.1" }
 nu-plugin-engine = { path = "../nu-plugin-engine", version = "0.103.1", optional = true }
-nu-protocol = { path = "../nu-protocol", version = "0.103.1", features = ["os"] }
+nu-protocol = { path = "../nu-protocol", version = "0.103.1", features = [
+  "os",
+] }
 nu-utils = { path = "../nu-utils", version = "0.103.1" }
 nu-color-config = { path = "../nu-color-config", version = "0.103.1" }
 nu-ansi-term = { workspace = true }
-reedline = { workspace = true, features = ["bashisms", "sqlite"] }
+reedline = { workspace = true, features = ["bashisms"] }
 
 chrono = { default-features = false, features = ["std"], workspace = true }
 crossterm = { workspace = true }
 fancy-regex = { workspace = true }
 is_executable = { workspace = true }
 log = { workspace = true }
-lscolors = { workspace = true, default-features = false, features = ["nu-ansi-term"] }
+lscolors = { workspace = true, default-features = false, features = [
+  "nu-ansi-term",
+] }
 miette = { workspace = true, features = ["fancy-no-backtrace"] }
 nucleo-matcher = { workspace = true }
 percent-encoding = { workspace = true }
@@ -49,6 +53,8 @@ which = { workspace = true }
 [features]
 plugin = ["nu-plugin-engine"]
 system-clipboard = ["reedline/system_clipboard"]
+sqlite = ["reedline/sqlite"]
+sqlite-dynlib = ["reedline/sqlite-dynlib"]
 
 [lints]
 workspace = true

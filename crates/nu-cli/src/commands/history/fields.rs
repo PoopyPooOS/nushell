@@ -6,4 +6,5 @@ pub const HOSTNAME: &str = "hostname";
 pub const CWD: &str = "cwd";
 pub const EXIT_STATUS: &str = "exit_status";
 pub const DURATION: &str = "duration";
+#[cfg(any(feature = "sqlite", feature = "sqlite-dynlib"))]
 pub const SESSION_ID: &str = "session_id";

@@ -32,15 +32,8 @@ quickcheck_macros = { workspace = true }
 
 [features]
 default = ["os"]
-os = [
-  "nu-engine/os",
-  "nu-protocol/os",
-  "nu-utils/os",
-]
-plugin = [
-  "nu-protocol/plugin",
-  "os",
-]
+os = ["nu-engine/os", "nu-protocol/os", "nu-utils/os"]
+plugin = ["nu-protocol/plugin", "os"]
 
 trash-support = []
 sqlite = []

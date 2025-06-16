@@ -6,9 +6,9 @@ use nu_protocol::{
     HistoryFileFormat,
 };
 
-use reedline::{
-    FileBackedHistory, History, HistoryItem, ReedlineError, SearchQuery, SqliteBackedHistory,
-};
+#[cfg(any(feature = "sqlite", feature = "sqlite-dynlib"))]
+use reedline::SqliteBackedHistory;
+use reedline::{FileBackedHistory, History, HistoryItem, ReedlineError, SearchQuery};
 
 use super::fields;
 
@@ -140,7 +140,18 @@ fn new_backend(
     match format {
         // Use a reasonably large value for maximum capacity.
         HistoryFileFormat::Plaintext => map(FileBackedHistory::with_file(0xfffffff, path)),
+        #[cfg(any(feature = "sqlite", feature = "sqlite-dynlib"))]
         HistoryFileFormat::Sqlite => map(SqliteBackedHistory::with_file(path, None, None)),
+        #[cfg(not(any(feature = "sqlite", feature = "sqlite-dynlib")))]
+        HistoryFileFormat::Sqlite => {
+            return Err(ShellError::GenericError {
+                error: "Feature not enabled".into(),
+                msg: "Sqlite history support is not enabled".into(),
+                span: None,
+                help: None,
+                inner: Vec::new(),
+            })
+        }
     }
 }
 

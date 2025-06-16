@@ -33,9 +33,11 @@ use nu_utils::{
     filesystem::{have_permission, PermissionResult},
     perf,
 };
+#[cfg(any(feature = "sqlite", feature = "sqlite-dynlib"))]
+use reedline::SqliteBackedHistory;
 use reedline::{
     CursorConfig, CwdAwareHinter, DefaultCompleter, EditCommand, Emacs, FileBackedHistory,
-    HistorySessionId, Reedline, SqliteBackedHistory, Vi,
+    HistorySessionId, Reedline, Vi,
 };
 use std::sync::atomic::Ordering;
 use std::{
@@ -1225,6 +1227,7 @@ fn update_line_editor_history(
             FileBackedHistory::with_file(history.max_size as usize, history_path)
                 .into_diagnostic()?,
         ),
+        #[cfg(any(feature = "sqlite", feature = "sqlite-dynlib"))]
         HistoryFileFormat::Sqlite => Box::new(
             SqliteBackedHistory::with_file(
                 history_path.to_path_buf(),
@@ -1233,6 +1236,10 @@ fn update_line_editor_history(
             )
             .into_diagnostic()?,
         ),
+        #[cfg(not(any(feature = "sqlite", feature = "sqlite-dynlib")))]
+        HistoryFileFormat::Sqlite => {
+            return Err(ErrReport::msg("Sqlite history support is not enabled"))
+        }
     };
     let line_editor = line_editor
         .with_history_session_id(history_session_id)

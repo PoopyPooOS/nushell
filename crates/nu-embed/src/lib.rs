@@ -3,34 +3,40 @@ use nu_cmd_lang::create_default_context;
 use nu_command::add_shell_command_context;
 use nu_protocol::engine::{Stack, StateWorkingSet};
 pub use nu_protocol::{PipelineData, Value, engine::Command};
-use std::{collections::HashMap, env::current_dir, path::PathBuf};
+use std::{collections::HashMap, env::current_dir, fmt::Debug, path::PathBuf};
 
+#[derive(Clone)]
 pub struct Engine {
     commands: Vec<Box<dyn Command>>,
     env_vars: HashMap<String, Value>,
 
-    input: PipelineData,
     allow_return: bool,
     name: String,
+}
 
-    source: String,
+impl Debug for Engine {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        f.debug_struct("Engine")
+            .field("commands", &"<list of extra commands>")
+            .field("env_vars", &self.env_vars)
+            .field("allow_return", &self.allow_return)
+            .field("name", &self.name)
+            .finish()
+    }
 }
 
 impl Engine {
-    pub fn new(source: impl Into<String>) -> Self {
-        Self::new_with_name(source, "script")
+    pub fn new() -> Self {
+        Self::new_with_name("script")
     }
 
-    pub fn new_with_name(source: impl Into<String>, name: impl Into<String>) -> Self {
+    pub fn new_with_name(name: impl Into<String>) -> Self {
         Self {
             commands: Vec::new(),
             env_vars: HashMap::new(),
 
-            input: PipelineData::Empty,
             allow_return: false,
             name: name.into(),
-
-            source: source.into(),
         }
     }
 
@@ -44,11 +50,6 @@ impl Engine {
         self.env_vars.insert(name.into(), value);
     }
 
-    /// Set the pipeline input data.
-    pub fn set_input(&mut self, input: PipelineData) {
-        self.input = input;
-    }
-
     /// Set the script name.
     pub fn set_name(&mut self, name: impl Into<String>) {
         self.name = name.into();
@@ -58,7 +59,11 @@ impl Engine {
         self.allow_return = allow_return;
     }
 
-    pub fn eval(self) {
+    pub fn eval(&self, source: impl Into<String>) {
+        self.eval_with_input(source, PipelineData::Empty);
+    }
+
+    pub fn eval_with_input(&self, source: impl Into<String>, input: PipelineData) {
         let mut engine_state = add_shell_command_context(create_default_context());
         let mut stack = Stack::new();
 
@@ -73,7 +78,7 @@ impl Engine {
         let delta = {
             let mut working_set = StateWorkingSet::new(&engine_state);
 
-            for command in self.commands {
+            for command in self.commands.clone() {
                 working_set.add_decl(command);
             }
 
@@ -84,16 +89,16 @@ impl Engine {
             eprintln!("Error adding extra commands to the engine: {err:?}");
         }
 
-        for env_var in self.env_vars {
+        for env_var in self.env_vars.clone() {
             stack.add_env_var(env_var.0, env_var.1);
         }
 
         eval_source(
             &mut engine_state,
             &mut stack,
-            self.source.as_bytes(),
+            source.into().as_bytes(),
             &self.name,
-            self.input,
+            input,
             self.allow_return,
         );
     }
