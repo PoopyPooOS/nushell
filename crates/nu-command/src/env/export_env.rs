@@ -66,7 +66,7 @@ impl Command for ExportEnv {
         Ok(PipelineData::empty())
     }
 
-    fn examples(&self) -> Vec<Example> {
+    fn examples(&'_ self) -> Vec<Example<'_>> {
         vec![
             Example {
                 description: "Set an environment variable",

@@ -42,7 +42,7 @@ impl PluginCommand for ToLowerCase {
             .category(Category::Custom("dataframe".into()))
     }
 
-    fn examples(&self) -> Vec<Example> {
+    fn examples(&'_ self) -> Vec<Example<'_>> {
         vec![
             Example {
                 description: "Modifies strings in a column to lowercase",

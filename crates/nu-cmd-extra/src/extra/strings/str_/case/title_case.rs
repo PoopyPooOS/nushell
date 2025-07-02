@@ -54,7 +54,7 @@ impl Command for StrTitleCase {
         )
     }
 
-    fn examples(&self) -> Vec<Example> {
+    fn examples(&'_ self) -> Vec<Example<'_>> {
         vec![
             Example {
                 description: "convert a string to Title Case",

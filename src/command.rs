@@ -481,7 +481,7 @@ impl Command for Nu {
         Ok(Value::string(get_full_help(self, engine_state, stack), call.head).into_pipeline_data())
     }
 
-    fn examples(&self) -> Vec<nu_protocol::Example> {
+    fn examples(&'_ self) -> Vec<Example<'_>> {
         vec![
             Example {
                 description: "Run a script",

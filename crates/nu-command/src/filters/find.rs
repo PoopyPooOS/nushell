@@ -66,7 +66,7 @@ impl Command for Find {
         "Searches terms in the input."
     }
 
-    fn examples(&self) -> Vec<Example> {
+    fn examples(&'_ self) -> Vec<Example<'_>> {
         vec![
             Example {
                 description: "Search for multiple terms in a command output",

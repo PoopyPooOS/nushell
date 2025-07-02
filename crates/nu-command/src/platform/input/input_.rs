@@ -174,7 +174,7 @@ impl Command for Input {
         }
     }
 
-    fn examples(&self) -> Vec<Example> {
+    fn examples(&'_ self) -> Vec<Example<'_>> {
         vec![
             Example {
                 description: "Get input from the user, and assign to a variable",

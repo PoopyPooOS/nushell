@@ -141,7 +141,7 @@ impl Command for History {
         }
     }
 
-    fn examples(&self) -> Vec<Example> {
+    fn examples(&'_ self) -> Vec<Example<'_>> {
         vec![
             Example {
                 example: "history | length",

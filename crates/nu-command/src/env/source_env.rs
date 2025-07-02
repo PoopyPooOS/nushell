@@ -103,7 +103,7 @@ impl Command for SourceEnv {
         result
     }
 
-    fn examples(&self) -> Vec<Example> {
+    fn examples(&'_ self) -> Vec<Example<'_>> {
         vec![
             Example {
                 description: "Sources the environment from foo.nu in the current context",

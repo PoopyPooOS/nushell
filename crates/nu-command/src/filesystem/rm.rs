@@ -69,7 +69,7 @@ impl Command for Rm {
         rm(engine_state, stack, call)
     }
 
-    fn examples(&self) -> Vec<Example> {
+    fn examples(&'_ self) -> Vec<Example<'_>> {
         let mut examples = vec![Example {
             description:
                 "Delete, or move a file to the trash (based on the 'always_trash' config option)",

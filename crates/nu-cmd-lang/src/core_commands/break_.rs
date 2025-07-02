@@ -40,7 +40,7 @@ impl Command for Break {
         Err(ShellError::Break { span: call.head })
     }
 
-    fn examples(&self) -> Vec<Example> {
+    fn examples(&'_ self) -> Vec<Example<'_>> {
         vec![Example {
             description: "Break out of a loop",
             example: r#"loop { break }"#,

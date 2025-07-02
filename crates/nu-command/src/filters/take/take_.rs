@@ -111,7 +111,7 @@ impl Command for Take {
         }
     }
 
-    fn examples(&self) -> Vec<Example> {
+    fn examples(&'_ self) -> Vec<Example<'_>> {
         vec![
             Example {
                 description: "Return the first item of a list/table",

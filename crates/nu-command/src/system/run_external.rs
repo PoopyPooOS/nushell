@@ -337,7 +337,7 @@ impl Command for External {
         ))
     }
 
-    fn examples(&self) -> Vec<Example> {
+    fn examples(&'_ self) -> Vec<Example<'_>> {
         vec![
             Example {
                 description: "Run an external command",

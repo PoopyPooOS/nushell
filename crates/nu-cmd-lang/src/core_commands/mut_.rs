@@ -84,7 +84,7 @@ impl Command for Mut {
         Ok(PipelineData::empty())
     }
 
-    fn examples(&self) -> Vec<Example> {
+    fn examples(&'_ self) -> Vec<Example<'_>> {
         vec![
             Example {
                 description: "Set a mutable variable to a value, then update it",

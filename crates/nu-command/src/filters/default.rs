@@ -46,7 +46,7 @@ impl Command for Default {
         default(engine_state, stack, call, input, empty)
     }
 
-    fn examples(&self) -> Vec<Example> {
+    fn examples(&'_ self) -> Vec<Example<'_>> {
         vec![
             Example {
                 description: "Give a default 'target' column to all file entries",

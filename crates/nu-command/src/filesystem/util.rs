@@ -4,6 +4,7 @@ use std::{
     path::{Path, PathBuf},
 };
 
+#[allow(dead_code)]
 #[derive(Debug, Eq, Ord, PartialEq, PartialOrd)]
 pub struct Resource {
     pub at: usize,

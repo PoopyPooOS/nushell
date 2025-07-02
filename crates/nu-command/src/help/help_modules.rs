@@ -39,7 +39,7 @@ are also available in the current scope. Commands/aliases that were imported und
             .allow_variants_without_examples(true)
     }
 
-    fn examples(&self) -> Vec<Example> {
+    fn examples(&'_ self) -> Vec<Example<'_>> {
         vec![
             Example {
                 description: "show all modules",

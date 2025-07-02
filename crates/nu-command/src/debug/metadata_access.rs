@@ -50,7 +50,7 @@ impl Command for MetadataAccess {
         eval(engine_state, &mut callee_stack, block, input)
     }
 
-    fn examples(&self) -> Vec<Example> {
+    fn examples(&'_ self) -> Vec<Example<'_>> {
         vec![Example {
             description: "Access metadata and data from a stream together",
             example: r#"{foo: bar} | to json --raw | metadata access {|meta| {in: $in, meta: $meta}}"#,

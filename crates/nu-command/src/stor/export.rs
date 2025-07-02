@@ -31,7 +31,7 @@ impl Command for StorExport {
         vec!["sqlite", "save", "database", "saving", "file"]
     }
 
-    fn examples(&self) -> Vec<Example> {
+    fn examples(&'_ self) -> Vec<Example<'_>> {
         vec![Example {
             description: "Export the in-memory sqlite database",
             example: "stor export --file-name nudb.sqlite",

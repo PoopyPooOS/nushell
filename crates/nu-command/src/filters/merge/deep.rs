@@ -45,7 +45,7 @@ The way lists and tables are merged is controlled by the `--strategy` flag:
             .named("strategy", SyntaxShape::String, "The list merging strategy to use. One of: table (default), overwrite, append, prepend", Some('s'))
     }
 
-    fn examples(&self) -> Vec<Example> {
+    fn examples(&'_ self) -> Vec<Example<'_>> {
         vec![
             Example {
                 example: "{a: 1, b: {c: 2, d: 3}} | merge deep {b: {d: 4, e: 5}}",

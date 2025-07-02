@@ -34,7 +34,7 @@ impl Command for SkipWhile {
         vec!["ignore"]
     }
 
-    fn examples(&self) -> Vec<Example> {
+    fn examples(&'_ self) -> Vec<Example<'_>> {
         vec![
             Example {
                 description: "Skip while the element is negative",

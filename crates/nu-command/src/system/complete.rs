@@ -83,7 +83,7 @@ impl Command for Complete {
         }
     }
 
-    fn examples(&self) -> Vec<Example> {
+    fn examples(&'_ self) -> Vec<Example<'_>> {
         vec![Example {
             description:
                 "Run the external command to completion, capturing stdout, stderr, and exit_code",

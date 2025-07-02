@@ -38,7 +38,7 @@ impl Command for OverlayList {
         Ok(Value::list(active_overlays_engine, call.head).into_pipeline_data())
     }
 
-    fn examples(&self) -> Vec<Example> {
+    fn examples(&'_ self) -> Vec<Example<'_>> {
         vec![Example {
             description: "Get the last activated overlay",
             example: r#"module spam { export def foo [] { "foo" } }

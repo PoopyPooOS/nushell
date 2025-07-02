@@ -64,7 +64,7 @@ impl Command for FromTsv {
         from_tsv(engine_state, stack, call, input)
     }
 
-    fn examples(&self) -> Vec<Example> {
+    fn examples(&'_ self) -> Vec<Example<'_>> {
         vec![
             Example {
                 description: "Convert tab-separated data to a table",

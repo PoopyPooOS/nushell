@@ -50,7 +50,7 @@ impl Command for Debug {
         )
     }
 
-    fn examples(&self) -> Vec<Example> {
+    fn examples(&'_ self) -> Vec<Example<'_>> {
         vec![
             Example {
                 description: "Debug print a string",

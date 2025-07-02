@@ -76,7 +76,7 @@ impl Command for Fill {
         vec!["display", "render", "format", "pad", "align", "repeat"]
     }
 
-    fn examples(&self) -> Vec<Example> {
+    fn examples(&'_ self) -> Vec<Example<'_>> {
         vec![
             Example {
                 description:

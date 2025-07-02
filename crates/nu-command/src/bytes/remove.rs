@@ -76,7 +76,7 @@ impl Command for BytesRemove {
         operate(remove, arg, input, call.head, engine_state.signals())
     }
 
-    fn examples(&self) -> Vec<Example> {
+    fn examples(&'_ self) -> Vec<Example<'_>> {
         vec![
             Example {
                 description: "Remove contents",

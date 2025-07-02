@@ -65,7 +65,7 @@ impl Command for Loop {
         Ok(PipelineData::empty())
     }
 
-    fn examples(&self) -> Vec<Example> {
+    fn examples(&'_ self) -> Vec<Example<'_>> {
         vec![Example {
             description: "Loop while a condition is true",
             example: "mut x = 0; loop { if $x > 10 { break }; $x = $x + 1 }; $x",

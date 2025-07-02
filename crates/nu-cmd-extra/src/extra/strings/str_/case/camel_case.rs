@@ -54,7 +54,7 @@ impl Command for StrCamelCase {
         )
     }
 
-    fn examples(&self) -> Vec<Example> {
+    fn examples(&'_ self) -> Vec<Example<'_>> {
         vec![
             Example {
                 description: "convert a string to camelCase",

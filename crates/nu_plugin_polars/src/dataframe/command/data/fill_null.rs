@@ -37,7 +37,7 @@ impl PluginCommand for LazyFillNull {
             .category(Category::Custom("lazyframe".into()))
     }
 
-    fn examples(&self) -> Vec<Example> {
+    fn examples(&'_ self) -> Vec<Example<'_>> {
         vec![Example {
             description: "Fills the null values by 0",
             example: "[1 2 2 3 3] | polars into-df | polars shift 2 | polars fill-null 0",

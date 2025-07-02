@@ -69,7 +69,7 @@ impl Command for Clear {
         Ok(PipelineData::Empty)
     }
 
-    fn examples(&self) -> Vec<Example> {
+    fn examples(&'_ self) -> Vec<Example<'_>> {
         vec![
             Example {
                 description: "Clear the terminal",

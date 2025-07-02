@@ -39,7 +39,7 @@ impl Command for Continue {
         Err(ShellError::Continue { span: call.head })
     }
 
-    fn examples(&self) -> Vec<Example> {
+    fn examples(&'_ self) -> Vec<Example<'_>> {
         vec![Example {
             description: "Continue a loop from the next iteration",
             example: r#"for i in 1..10 { if $i == 5 { continue }; print $i }"#,

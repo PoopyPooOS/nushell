@@ -59,7 +59,7 @@ If the command is inserting at the end of a list or table, then both of these va
         upsert(engine_state, stack, call, input)
     }
 
-    fn examples(&self) -> Vec<Example> {
+    fn examples(&'_ self) -> Vec<Example<'_>> {
         vec![
             Example {
                 description: "Update a record's value",

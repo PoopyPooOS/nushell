@@ -68,7 +68,7 @@ impl Command for Cal {
         cal(engine_state, stack, call, input)
     }
 
-    fn examples(&self) -> Vec<Example> {
+    fn examples(&'_ self) -> Vec<Example<'_>> {
         vec![
             Example {
                 description: "This month's calendar",

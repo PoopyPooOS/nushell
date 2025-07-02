@@ -59,7 +59,7 @@ impl Command for IntoDuration {
         into_duration(engine_state, stack, call, input)
     }
 
-    fn examples(&self) -> Vec<Example> {
+    fn examples(&'_ self) -> Vec<Example<'_>> {
         vec![
             Example {
                 description: "Convert duration string to duration value",

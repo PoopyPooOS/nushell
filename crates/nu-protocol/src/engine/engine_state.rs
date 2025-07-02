@@ -1026,9 +1026,9 @@ impl EngineState {
     }
 
     pub fn activate_debugger(
-        &self,
+        &'_ self,
         debugger: Box<dyn Debugger>,
-    ) -> Result<(), PoisonDebuggerError> {
+    ) -> Result<(), PoisonDebuggerError<'_>> {
         let mut locked_debugger = self.debugger.lock()?;
         *locked_debugger = debugger;
         locked_debugger.activate();
@@ -1036,7 +1036,7 @@ impl EngineState {
         Ok(())
     }
 
-    pub fn deactivate_debugger(&self) -> Result<Box<dyn Debugger>, PoisonDebuggerError> {
+    pub fn deactivate_debugger(&'_ self) -> Result<Box<dyn Debugger>, PoisonDebuggerError<'_>> {
         let mut locked_debugger = self.debugger.lock()?;
         locked_debugger.deactivate();
         let ret = std::mem::replace(&mut *locked_debugger, Box::new(NoopDebugger));

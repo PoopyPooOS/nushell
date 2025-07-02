@@ -53,7 +53,7 @@ impl Command for NuHighlight {
         )
     }
 
-    fn examples(&self) -> Vec<Example> {
+    fn examples(&'_ self) -> Vec<Example<'_>> {
         vec![Example {
             description: "Describe the type of a string",
             example: "'let x = 3' | nu-highlight",

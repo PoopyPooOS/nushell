@@ -73,7 +73,7 @@ not supported."#
             .into_pipeline_data_with_metadata(head, engine_state.signals().clone(), metadata))
     }
 
-    fn examples(&self) -> Vec<Example> {
+    fn examples(&'_ self) -> Vec<Example<'_>> {
         vec![
             Example {
                 description: "Filter rows of a table according to a condition",

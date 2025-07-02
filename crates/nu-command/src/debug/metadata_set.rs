@@ -70,7 +70,7 @@ impl Command for MetadataSet {
         Ok(input.set_metadata(Some(metadata)))
     }
 
-    fn examples(&self) -> Vec<Example> {
+    fn examples(&'_ self) -> Vec<Example<'_>> {
         vec![
             Example {
                 description: "Set the metadata of a table literal",

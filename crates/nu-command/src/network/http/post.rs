@@ -100,7 +100,7 @@ impl Command for HttpPost {
         run_post(engine_state, stack, call, input)
     }
 
-    fn examples(&self) -> Vec<Example> {
+    fn examples(&'_ self) -> Vec<Example<'_>> {
         vec![
             Example {
                 description: "Post content to example.com",

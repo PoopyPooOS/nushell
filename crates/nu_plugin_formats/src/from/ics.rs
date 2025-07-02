@@ -27,7 +27,7 @@ impl SimplePluginCommand for FromIcs {
             .category(Category::Formats)
     }
 
-    fn examples(&self) -> Vec<Example> {
+    fn examples(&'_ self) -> Vec<Example<'_>> {
         examples()
     }
 

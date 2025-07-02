@@ -136,7 +136,7 @@ impl Command for NuCheck {
         }
     }
 
-    fn examples(&self) -> Vec<Example> {
+    fn examples(&'_ self) -> Vec<Example<'_>> {
         vec![
             Example {
                 description: "Parse a input file as script(Default)",

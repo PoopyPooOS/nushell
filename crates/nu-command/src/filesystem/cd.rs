@@ -138,7 +138,7 @@ impl Command for Cd {
         }
     }
 
-    fn examples(&self) -> Vec<Example> {
+    fn examples(&'_ self) -> Vec<Example<'_>> {
         vec![
             Example {
                 description: "Change to your home directory",

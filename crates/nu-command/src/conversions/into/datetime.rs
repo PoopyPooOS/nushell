@@ -176,7 +176,7 @@ impl Command for IntoDatetime {
         vec!["convert", "timezone", "UTC"]
     }
 
-    fn examples(&self) -> Vec<Example> {
+    fn examples(&'_ self) -> Vec<Example<'_>> {
         let example_result_1 = |nanos: i64| {
             Some(Value::date(
                 Utc.timestamp_nanos(nanos).into(),

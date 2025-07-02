@@ -156,7 +156,7 @@ impl Command for Ls {
         }
     }
 
-    fn examples(&self) -> Vec<Example> {
+    fn examples(&'_ self) -> Vec<Example<'_>> {
         vec![
             Example {
                 description: "List visible files in the current directory",

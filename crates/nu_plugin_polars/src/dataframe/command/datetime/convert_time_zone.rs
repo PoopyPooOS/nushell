@@ -41,7 +41,7 @@ impl PluginCommand for ConvertTimeZone {
             .category(Category::Custom("dataframe".into()))
     }
 
-    fn examples(&self) -> Vec<Example> {
+    fn examples(&'_ self) -> Vec<Example<'_>> {
         vec![
             Example {
                 description: "Convert timezone for timezone-aware datetime",

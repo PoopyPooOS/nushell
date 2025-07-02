@@ -33,7 +33,7 @@ impl Command for DecodeHex {
         "Hex decode a value."
     }
 
-    fn examples(&self) -> Vec<Example> {
+    fn examples(&'_ self) -> Vec<Example<'_>> {
         vec![
             Example {
                 description: "Hex decode a value and output as binary",

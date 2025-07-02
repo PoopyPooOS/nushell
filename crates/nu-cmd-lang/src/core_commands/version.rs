@@ -48,7 +48,7 @@ impl Command for Version {
         version(working_set.permanent(), call.head)
     }
 
-    fn examples(&self) -> Vec<Example> {
+    fn examples(&'_ self) -> Vec<Example<'_>> {
         vec![Example {
             description: "Display Nu version",
             example: "version",

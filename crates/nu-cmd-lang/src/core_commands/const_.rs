@@ -85,7 +85,7 @@ impl Command for Const {
         true
     }
 
-    fn examples(&self) -> Vec<Example> {
+    fn examples(&'_ self) -> Vec<Example<'_>> {
         vec![
             Example {
                 description: "Create a new parse-time constant.",

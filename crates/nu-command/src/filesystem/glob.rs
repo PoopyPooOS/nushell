@@ -52,7 +52,7 @@ impl Command for Glob {
         vec!["pattern", "files", "folders", "list", "ls"]
     }
 
-    fn examples(&self) -> Vec<Example> {
+    fn examples(&'_ self) -> Vec<Example<'_>> {
         vec![
             Example {
                 description: "Search for *.rs files",

@@ -286,7 +286,7 @@ impl Command for Watch {
         Ok(PipelineData::empty())
     }
 
-    fn examples(&self) -> Vec<Example> {
+    fn examples(&'_ self) -> Vec<Example<'_>> {
         vec![
             Example {
                 description: "Run `cargo test` whenever a Rust file changes",

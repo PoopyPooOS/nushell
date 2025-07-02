@@ -38,7 +38,7 @@ impl PluginCommand for LazyFilter {
             .category(Category::Custom("lazyframe".into()))
     }
 
-    fn examples(&self) -> Vec<Example> {
+    fn examples(&'_ self) -> Vec<Example<'_>> {
         vec![
             Example {
                 description: "Filter dataframe using an expression",

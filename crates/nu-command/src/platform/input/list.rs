@@ -235,7 +235,7 @@ impl Command for InputList {
         .into_pipeline_data())
     }
 
-    fn examples(&self) -> Vec<Example> {
+    fn examples(&'_ self) -> Vec<Example<'_>> {
         vec![
             Example {
                 description: "Return a single value from a list",

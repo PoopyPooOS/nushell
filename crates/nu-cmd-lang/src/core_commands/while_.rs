@@ -95,7 +95,7 @@ impl Command for While {
         Ok(PipelineData::empty())
     }
 
-    fn examples(&self) -> Vec<Example> {
+    fn examples(&'_ self) -> Vec<Example<'_>> {
         vec![Example {
             description: "Loop while a condition is true",
             example: "mut x = 0; while $x < 10 { $x = $x + 1 }",

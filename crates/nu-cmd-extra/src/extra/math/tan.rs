@@ -48,7 +48,7 @@ impl Command for MathTan {
         )
     }
 
-    fn examples(&self) -> Vec<Example> {
+    fn examples(&'_ self) -> Vec<Example<'_>> {
         vec![
             Example {
                 description: "Apply the tangent to π/4",

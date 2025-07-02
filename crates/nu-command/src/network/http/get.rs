@@ -102,7 +102,7 @@ impl Command for HttpGet {
         run_get(engine_state, stack, call, input)
     }
 
-    fn examples(&self) -> Vec<Example> {
+    fn examples(&'_ self) -> Vec<Example<'_>> {
         vec![
             Example {
                 description: "Get content from example.com",

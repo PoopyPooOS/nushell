@@ -33,7 +33,7 @@
 //!         )
 //!     }
 //!
-//!     fn examples(&self) -> Vec<Example> {
+//!     fn examples(&'_ self) -> Vec<Example<'_>> {
 //!         vec![Example {
 //!             example: r#"[Hello wORLD] | lowercase"#,
 //!             description: "Lowercase a list of strings",

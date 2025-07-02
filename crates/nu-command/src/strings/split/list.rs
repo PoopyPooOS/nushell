@@ -37,7 +37,7 @@ impl Command for SubCommand {
         vec!["separate", "divide", "regex"]
     }
 
-    fn examples(&self) -> Vec<Example> {
+    fn examples(&'_ self) -> Vec<Example<'_>> {
         vec![
             Example {
                 description: "Split a list of chars into two lists",

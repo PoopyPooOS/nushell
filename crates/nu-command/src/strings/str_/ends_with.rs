@@ -93,7 +93,7 @@ impl Command for StrEndswith {
         )
     }
 
-    fn examples(&self) -> Vec<Example> {
+    fn examples(&'_ self) -> Vec<Example<'_>> {
         vec![
             Example {
                 description: "Checks if string ends with '.rb'",

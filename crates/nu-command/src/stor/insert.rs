@@ -45,7 +45,7 @@ impl Command for StorInsert {
         vec!["sqlite", "storing", "table", "saving"]
     }
 
-    fn examples(&self) -> Vec<Example> {
+    fn examples(&'_ self) -> Vec<Example<'_>> {
         vec![Example {
                 description: "Insert data in the in-memory sqlite database using a data-record of column-name and column-value pairs",
                 example: "stor insert --table-name nudb --data-record {bool1: true, int1: 5, float1: 1.1, str1: fdncred, datetime1: 2023-04-17}",

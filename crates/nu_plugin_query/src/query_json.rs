@@ -28,7 +28,7 @@ impl SimplePluginCommand for QueryJson {
             .category(Category::Filters)
     }
 
-    fn examples(&self) -> Vec<nu_protocol::Example> {
+    fn examples(&'_ self) -> Vec<Example<'_>> {
         vec![
             Example {
                 description: "Get a list of children from a json object",

@@ -84,7 +84,7 @@ impl Command for HttpHead {
         run_head(engine_state, stack, call, input)
     }
 
-    fn examples(&self) -> Vec<Example> {
+    fn examples(&'_ self) -> Vec<Example<'_>> {
         vec![
             Example {
                 description: "Get headers from example.com",

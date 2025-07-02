@@ -25,7 +25,7 @@ impl Command for PluginStop {
         "Stop an installed plugin if it was running."
     }
 
-    fn examples(&self) -> Vec<nu_protocol::Example> {
+    fn examples(&'_ self) -> Vec<Example<'_>> {
         vec![
             Example {
                 example: "plugin stop inc",

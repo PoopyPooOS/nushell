@@ -37,7 +37,7 @@ impl PluginCommand for TakeDF {
             .category(Category::Custom("dataframe".into()))
     }
 
-    fn examples(&self) -> Vec<Example> {
+    fn examples(&'_ self) -> Vec<Example<'_>> {
         vec![
             Example {
                 description: "Takes selected rows from dataframe",

@@ -48,7 +48,7 @@ impl Command for IntoCellPath {
         into_cell_path(call, input)
     }
 
-    fn examples(&self) -> Vec<Example> {
+    fn examples(&'_ self) -> Vec<Example<'_>> {
         vec![
             Example {
                 description: "Convert integer into cell path",

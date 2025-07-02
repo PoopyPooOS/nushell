@@ -40,7 +40,7 @@ impl PluginCommand for ExprIsIn {
             .category(Category::Custom("expression".into()))
     }
 
-    fn examples(&self) -> Vec<Example> {
+    fn examples(&'_ self) -> Vec<Example<'_>> {
         vec![
             Example {
                 description: "Creates a is-in expression",

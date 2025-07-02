@@ -67,7 +67,7 @@ impl PluginCommand for Rolling {
             .category(Category::Custom("dataframe".into()))
     }
 
-    fn examples(&self) -> Vec<Example> {
+    fn examples(&'_ self) -> Vec<Example<'_>> {
         vec![
             Example {
                 description: "Rolling sum for a series",

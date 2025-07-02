@@ -36,7 +36,7 @@ impl Command for StorCreate {
         vec!["sqlite", "storing", "table"]
     }
 
-    fn examples(&self) -> Vec<Example> {
+    fn examples(&'_ self) -> Vec<Example<'_>> {
         vec![Example {
             description: "Create an in-memory sqlite database with specified table name, column names, and column data types",
             example: "stor create --table-name nudb --columns {bool1: bool, int1: int, float1: float, str1: str, datetime1: datetime}",

@@ -104,7 +104,7 @@ impl Command for HttpDelete {
         run_delete(engine_state, stack, call, input)
     }
 
-    fn examples(&self) -> Vec<Example> {
+    fn examples(&'_ self) -> Vec<Example<'_>> {
         vec![
             Example {
                 description: "http delete from example.com",

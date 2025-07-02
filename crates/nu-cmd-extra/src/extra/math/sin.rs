@@ -48,7 +48,7 @@ impl Command for MathSin {
         )
     }
 
-    fn examples(&self) -> Vec<Example> {
+    fn examples(&'_ self) -> Vec<Example<'_>> {
         vec![
             Example {
                 description: "Apply the sine to π/2",

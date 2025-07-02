@@ -128,7 +128,7 @@ impl Command for ToText {
         }
     }
 
-    fn examples(&self) -> Vec<Example> {
+    fn examples(&'_ self) -> Vec<Example<'_>> {
         vec![
             Example {
                 description: "Outputs data as simple text with a trailing newline",

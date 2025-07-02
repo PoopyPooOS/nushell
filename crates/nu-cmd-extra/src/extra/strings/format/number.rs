@@ -23,7 +23,7 @@ impl Command for FormatNumber {
         vec!["display", "render", "fmt"]
     }
 
-    fn examples(&self) -> Vec<Example> {
+    fn examples(&'_ self) -> Vec<Example<'_>> {
         vec![Example {
             description: "Get a record containing multiple formats for the number 42",
             example: "42 | format number",

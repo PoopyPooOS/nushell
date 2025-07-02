@@ -93,7 +93,7 @@ impl Command for Items {
         .map(|data| data.set_metadata(metadata))
     }
 
-    fn examples(&self) -> Vec<Example> {
+    fn examples(&'_ self) -> Vec<Example<'_>> {
         vec![Example {
             example:
                 "{ new: york, san: francisco } | items {|key, value| echo $'($key) ($value)' }",

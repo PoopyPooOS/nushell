@@ -59,7 +59,7 @@ impl Command for ViewFiles {
         Ok(Value::list(records, call.head).into_pipeline_data())
     }
 
-    fn examples(&self) -> Vec<Example> {
+    fn examples(&'_ self) -> Vec<Example<'_>> {
         vec![
             Example {
                 description: "View the files registered in Nushell's EngineState memory",

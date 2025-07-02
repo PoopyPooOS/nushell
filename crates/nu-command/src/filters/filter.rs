@@ -123,7 +123,7 @@ a variable. On the other hand, the "row condition" syntax is not supported."#
         .map(|data| data.set_metadata(metadata))
     }
 
-    fn examples(&self) -> Vec<Example> {
+    fn examples(&'_ self) -> Vec<Example<'_>> {
         vec![
             Example {
                 description: "Filter items of a list according to a condition",

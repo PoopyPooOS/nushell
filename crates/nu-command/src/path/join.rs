@@ -74,7 +74,7 @@ the output of 'path parse' and 'path split' subcommands."#
     }
 
     #[cfg(windows)]
-    fn examples(&self) -> Vec<Example> {
+    fn examples(&'_ self) -> Vec<Example<'_>> {
         vec![
             Example {
                 description: "Append a filename to a path",
@@ -119,7 +119,7 @@ the output of 'path parse' and 'path split' subcommands."#
     }
 
     #[cfg(not(windows))]
-    fn examples(&self) -> Vec<Example> {
+    fn examples(&'_ self) -> Vec<Example<'_>> {
         vec![
             Example {
                 description: "Append a filename to a path",

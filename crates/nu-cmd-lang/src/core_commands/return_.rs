@@ -48,7 +48,7 @@ impl Command for Return {
         })
     }
 
-    fn examples(&self) -> Vec<Example> {
+    fn examples(&'_ self) -> Vec<Example<'_>> {
         vec![Example {
             description: "Return early",
             example: r#"def foo [] { return }"#,

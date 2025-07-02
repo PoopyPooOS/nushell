@@ -29,7 +29,7 @@ impl PluginCommand for SchemaCmd {
             .category(Category::Custom("dataframe".into()))
     }
 
-    fn examples(&self) -> Vec<Example> {
+    fn examples(&'_ self) -> Vec<Example<'_>> {
         vec![Example {
             description: "Dataframe schema",
             example: r#"[[a b]; [1 "foo"] [3 "bar"]] | polars into-df | polars schema"#,

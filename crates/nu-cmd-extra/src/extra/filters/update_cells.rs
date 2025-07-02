@@ -31,7 +31,7 @@ impl Command for UpdateCells {
         "Update the table cells."
     }
 
-    fn examples(&self) -> Vec<Example> {
+    fn examples(&'_ self) -> Vec<Example<'_>> {
         vec![
             Example {
                 description: "Update the zero value cells to empty strings.",

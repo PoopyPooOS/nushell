@@ -30,7 +30,7 @@ impl Command for Seq {
         seq(engine_state, stack, call)
     }
 
-    fn examples(&self) -> Vec<Example> {
+    fn examples(&'_ self) -> Vec<Example<'_>> {
         vec![
             Example {
                 description: "sequence 1 to 10",

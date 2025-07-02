@@ -54,7 +54,7 @@ impl Command for IntoSqliteDb {
         vec!["convert", "database"]
     }
 
-    fn examples(&self) -> Vec<Example> {
+    fn examples(&'_ self) -> Vec<Example<'_>> {
         vec![
             Example {
                 description: "Convert ls entries into a SQLite database with 'main' as the table name",
@@ -107,9 +107,9 @@ impl Table {
     }
 
     fn try_init(
-        &mut self,
+        &'_ mut self,
         record: &Record,
-    ) -> Result<rusqlite::Transaction, nu_protocol::ShellError> {
+    ) -> Result<rusqlite::Transaction<'_>, nu_protocol::ShellError> {
         let first_row_null = record.values().any(Value::is_nothing);
         let columns = get_columns_with_sqlite_types(record)?;
 

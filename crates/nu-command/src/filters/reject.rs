@@ -99,7 +99,7 @@ impl Command for Reject {
         reject(engine_state, span, input, new_columns)
     }
 
-    fn examples(&self) -> Vec<Example> {
+    fn examples(&'_ self) -> Vec<Example<'_>> {
         vec![
             Example {
                 description: "Reject a column in the `ls` table",

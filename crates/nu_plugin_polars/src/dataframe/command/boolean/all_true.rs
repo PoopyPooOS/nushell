@@ -29,7 +29,7 @@ impl PluginCommand for AllTrue {
             .category(Category::Custom("dataframe".into()))
     }
 
-    fn examples(&self) -> Vec<Example> {
+    fn examples(&'_ self) -> Vec<Example<'_>> {
         vec![
             Example {
                 description: "Returns true if all values are true",

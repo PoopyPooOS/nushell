@@ -95,7 +95,7 @@ impl Command for StrLength {
         )
     }
 
-    fn examples(&self) -> Vec<Example> {
+    fn examples(&'_ self) -> Vec<Example<'_>> {
         vec![
             Example {
                 description: "Return the lengths of a string",

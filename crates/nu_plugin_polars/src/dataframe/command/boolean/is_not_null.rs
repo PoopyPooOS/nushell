@@ -39,7 +39,7 @@ impl PluginCommand for IsNotNull {
             .category(Category::Custom("dataframe".into()))
     }
 
-    fn examples(&self) -> Vec<Example> {
+    fn examples(&'_ self) -> Vec<Example<'_>> {
         vec![
             Example {
                 description: "Create mask where values are not null",
